@@ -8,6 +8,31 @@ public class QueryProcessor {
                     "English poet, playwright, and actor, widely regarded as the greatest " +
                     "writer in the English language and the world's pre-eminent dramatist.";
         }
+        if (query.toLowerCase().contains("plus")) {
+            String[] numbers = query.toLowerCase().split(" ");
+            int firstNumber = Integer.parseInt(numbers[3]);
+            int secondNumber = Integer.parseInt(numbers[5]);
+            return firstNumber + secondNumber + "";
+        }
+        if (query.toLowerCase().contains("largest")) {
+            String[] numbers = query.toLowerCase().split(" ");
+            int largestNumber = -1;
+            for (String stringNumber: numbers) {
+                if (stringNumber.contains(",")) {
+                    stringNumber = stringNumber.replaceAll(",", "");
+                }
+                try {
+                    int currentNumber = Integer.parseInt(stringNumber);
+                    if (currentNumber > largestNumber) {
+                        largestNumber = currentNumber;
+                    }
+                }
+                catch (NumberFormatException ignored) {
+                }
+            }
+
+            return largestNumber + "";
+        }
         if (query.toLowerCase().contains("name")) {
             return "Stephan";
         }
